@@ -2,7 +2,9 @@
 # Vpc creation
 resource "aws_vpc" "projectvpc" {
   cidr_block = "10.0.0.0/16"
+  enable_dns_support = true
   enable_dns_hostnames = true
+
 }
 
 
@@ -11,6 +13,7 @@ resource "aws_subnet" "projectsubnet" {
   vpc_id     = aws_vpc.projectvpc.id
   cidr_block = "10.0.0.0/24"
   availability_zone = "us-east-1a"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "Public"
